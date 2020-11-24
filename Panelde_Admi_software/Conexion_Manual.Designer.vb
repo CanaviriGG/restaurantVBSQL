@@ -26,6 +26,7 @@ Partial Class Conexion_Manual
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtCnString = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -48,6 +49,7 @@ Partial Class Conexion_Manual
         Me.Label2.Text = "Una vez que este listo dale a ""generar cadena de conexion"" se creara un archivo q" &
     "ue contendra tu conexion Encryptada. Ahora tu conexion es mas segura ante posibl" &
     "es hacks"
+        Me.Label2.UseWaitCursor = True
         '
         'txtCnString
         '
@@ -70,12 +72,24 @@ Partial Class Conexion_Manual
         Me.Button1.TabIndex = 3
         Me.Button1.Text = "Generar cadena de conexion"
         Me.Button1.UseVisualStyleBackColor = False
+        Me.Button1.UseWaitCursor = True
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(523, 25)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(31, 27)
+        Me.Button2.TabIndex = 4
+        Me.Button2.Text = "X"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Conexion_Manual
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(578, 259)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.txtCnString)
         Me.Controls.Add(Me.Label2)
@@ -96,4 +110,5 @@ Partial Class Conexion_Manual
     Friend WithEvents Label2 As Label
     Friend WithEvents txtCnString As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class

@@ -7,14 +7,29 @@ Public Class Conexion_Manual
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtCnString.TextChanged
 
     End Sub
-
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
     End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        SavetoXML(aes.Encrypt(txtCnString.Text, appPwdUnique, Integer.Parse("256")))
+        If txtCnString.Text = "" Then
+            MessageBox.Show("Por favor ingrese la cadena e conexion.", "campos imcompletos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            SavetoXML(aes.Encrypt(txtCnString.Text, appPwdUnique, Integer.Parse("256")))
+        End If
+        Mostrar_Usuarios()
+    End Sub
+    Sub Mostrar_Usuarios()
+        Dim conexionPrueba As New SqlConnection(txtCnString.Text)
 
+        Dim IDuser As Integer
+        Dim com As New SqlCommand("Select idUsuario from Usuario", conexionPrueba)
+        Try
+            conexionPrueba.Open()
+            IDuser = (com.ExecuteScalar())
+            conexionPrueba.Close()
+            MessageBox.Show("Conexion creada correctamente", "Conexion", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show("Conexion Fallida, Revisar de nuevo la cadena de conexion", "Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Public Sub SavetoXML(ByVal dbcnString)
         Dim doc As XmlDocument = New XmlDocument()
@@ -40,5 +55,9 @@ Public Class Conexion_Manual
 
     Private Sub Conexion_Manual_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ReadfromXML()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Close()
     End Sub
 End Class
